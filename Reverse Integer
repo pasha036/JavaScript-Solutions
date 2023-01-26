@@ -1,0 +1,29 @@
+// Given a signed 32-bit integer x, return x with its digits reversed. 
+// If reversing x causes the value to go outside the signed 32-bit integer range [-2^31, 2^31 - 1], then return 0.
+// Assume the environment does not allow you to store 64-bit integers (signed or unsigned).
+
+
+/**
+ * @param {number} x
+ * @return {number}
+ */
+function reverse(x) {
+    let str = x.toString();
+    let isNegative = false;
+    if(str[0] === '-') {
+        str = str.slice(1);
+        isNegative = true;
+    }
+
+    let reversed = str.split('').reverse().join('');
+    if(isNegative) {
+        reversed = '-' + reversed;
+    }
+
+    let num = parseInt(reversed);
+    if(num > Math.pow(2,31)-1 || num < -Math.pow(2,31)) {
+        return 0;
+    }
+    return num;
+}
+
